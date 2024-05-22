@@ -9,12 +9,10 @@ import productRoutes from './routes/productRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
-import cors from 'cors';
 const port = process.env.PORT || 5000;
 
 connectDB(); // Connect to MongoDB
 const app = express();
-app.use(cors());
 
 // Body parser middleware
 app.use(express.json());
