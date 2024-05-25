@@ -1,4 +1,4 @@
-import { createProduct, createProductReview, deleteProduct, updateProduct } from "../../../backend/controllers/productController";
+import { createProduct, createProductReview, deleteProduct, getTopProducts, updateProduct } from "../../../backend/controllers/productController";
 import { PRODUCTS_URL, UPLOAD_URL } from "../constants";
 import { apiSlice } from "./apiSlice";
 
@@ -57,6 +57,12 @@ export const productsApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ['Product'],
         }),
+        getTopProducts: builder.query({
+            query: () => ({ 
+                url: `${PRODUCTS_URL}/top`,
+            }),
+            keepUnusedDataFor: 5,
+        }),
     }),
 });
 
@@ -68,4 +74,5 @@ export const {
     useUploadProductImageMutation,
     useDeleteProductMutation,
     useCreateReviewMutation,
+    useGetTopProductsQuery,
 } = productsApiSlice;
