@@ -1,4 +1,4 @@
-import { createProduct, deleteProduct, updateProduct } from "../../../backend/controllers/productController";
+import { createProduct, createProductReview, deleteProduct, updateProduct } from "../../../backend/controllers/productController";
 import { PRODUCTS_URL, UPLOAD_URL } from "../constants";
 import { apiSlice } from "./apiSlice";
 
@@ -45,6 +45,14 @@ export const productsApiSlice = apiSlice.injectEndpoints({
                 method: 'DELETE',
             }),
         }),
+        createReview: builder.mutation({
+            query: (data) => ({
+                url: `${PRODUCTS_URL}/${data.productId}/reviews`,
+                method: 'POST',
+                body: data,
+            }),
+            invalidatesTags: ['Product'],
+        }),
     }),
 });
 
@@ -55,4 +63,5 @@ export const {
     useUpdateProductMutation,
     useUploadProductImageMutation,
     useDeleteProductMutation,
+    useCreateReviewMutation,
 } = productsApiSlice;
